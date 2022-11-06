@@ -1,10 +1,27 @@
-import React from 'react';
-import { PageHOC } from '../components';
+import React, { useState } from 'react';
+import { PageHOC, CustomInput, CustomButton } from '../components';
+import { useGlobalContext } from '../context';
 
 const Home = () => {
+  const { contract, walletAddress } = useGlobalContext()
+  const [playerName, setPlayerName] = useState('')
+
+  const handleClick = async () => {
+    try {
+      await contract.isPlayer(walletAddress) 
+    } catch (error) {
+      alert(error)
+    }
+  }
   return (
-    <div>
-       <h1 className='text-white text-xl'>Hello from Home</h1>
+    <div className='flex flex-col'>
+       <CustomInput 
+       label ={"Name"}
+       placeholder={'Enter your player name'}
+       value={playerName}
+       handleValueChange={setPlayerName}/>
+
+       <CustomButton title={"Register"} onClick={handleClick} restType="mt-6" />
     </div>
   )
 };
