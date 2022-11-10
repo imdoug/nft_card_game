@@ -3,10 +3,11 @@ import  { ethers } from 'ethers'
 import Web3Modal from 'web3modal'
 import { useNavigate } from 'react-router-dom'
 import { ABI, ADDRESS  } from '../contract'
+import { createEventListeners } from "./CreateEventListner";
 
 const GlobalContext = createContext()
-
-export const GlobalContextProvider =({children}) =>{
+ export const GlobalContextProvider =({children}) =>{
+      const navigate = useNavigate()
       const [walletAddress, setWalletAddress] = useState('')
       const [provider, setProvider] = useState('')
       const [contract, setContract] = useState('')
@@ -40,6 +41,13 @@ export const GlobalContextProvider =({children}) =>{
         
             setSmartContractAndProvider();
       }, []);
+      useEffect(() => {
+         if(contract){
+            createEventListeners({
+                  navigate, contract, provider, walletAddress, setShowAlert
+            })
+         }
+      }, [contract])
       useEffect(() => {
             if (showAlert?.status) {
               const timer = setTimeout(() => {

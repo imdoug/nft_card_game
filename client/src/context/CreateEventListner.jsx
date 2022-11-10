@@ -5,8 +5,9 @@ import { playAudio, sparcle } from '../utils/animation.js';
 import { defenseSound } from '../assets';
 
 const AddNewEvent = (eventFilter, provider, cb) => {
+  //not have multiple listeners at the same time for the same event
   provider.removeListener(eventFilter);
-
+  
   provider.on(eventFilter, (logs) => {
     const parsedLog = (new ethers.utils.Interface(ABI)).parseLog(logs);
 
