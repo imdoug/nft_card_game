@@ -15,6 +15,7 @@ const GlobalContext = createContext()
       const [showAlert, setShowAlert] = useState({ status: false, type: 'info', message: '' })
       const [gameData, setGameData] = useState({players: [], pendingBattles: [], activeBattle: null})
       const [updateGameData, setUpdateGameData] = useState(0)
+      const [battleGround, setBattleGround] = useState('bg-astral')
       
       
 
@@ -83,7 +84,7 @@ const GlobalContext = createContext()
       },[contract, updateGameData])
       
       return (
-            <GlobalContext.Provider value={{ contract, walletAddress, showAlert, setShowAlert, battleName, setBattleName, gameData}}>
+            <GlobalContext.Provider value={{ contract, walletAddress, showAlert, setShowAlert, battleName, setBattleName, gameData, battleGround, setBattleGround}}>
                   {children}
             </GlobalContext.Provider>
       )
