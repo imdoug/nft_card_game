@@ -3,7 +3,7 @@ import  { useParams, useNavigate } from 'react-router-dom'
 import styles from '../styles'
 import { Alert, Card, GameInfo, ActionButton, PlayerInfo } from '../components'
 import { useGlobalContext } from '../context'
-import { attack, attackSound, defense, defenseSound,
+import { attack, attackSound, bakezori, defense, defenseSound,
        player01 as player01Icon, player02 as Player02Icon }
        from '../assets'
 import { playAudio } from '../utils/animation'
@@ -11,7 +11,7 @@ import { isBigNumberish } from '@ethersproject/bignumber/lib/bignumber'
 
 const Battle = () => {
       const { contract, gameData, walletAddress, showAlert,
-            setShowAlert, battleGround, setBattleGround
+            setShowAlert, battleGround, setBattleGround,
       } = useGlobalContext()
       const [player1, setPlayer1] = useState({})
       const [player2, setPlayer2] = useState({})
@@ -53,6 +53,7 @@ const Battle = () => {
             }
             if(contract && gameData.activeBattle) getPlayerInfo
       },[contract,gameData,battleName])
+      console.log(player1)
   return (
     <div className={`${styles.flexBetween} ${styles.gameContainer} ${battleGround}`}>
         {showAlert?.status && <Alert type={showAlert.type} message={showAlert.message}/> }
@@ -76,7 +77,7 @@ const Battle = () => {
                   restStyles='ml-6 hover:border-red-600' />
             </div>
         </div>
-      <PlayerInfo player={player1} playerIcon={player01Icon} mt/>
+      <PlayerInfo player={player1} playerIcon={player01Icon} />
 
       <GameInfo />
     </div>
