@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { GetParams } from '../utils/onboard.js';
 import { ABI, ADDRESS } from '../contract';
-import { createEventListeners } from './CreateEventListeners';
+import { createEventListeners } from './createEventListeners';
 
 const GlobalContext = createContext();
 
@@ -53,7 +53,7 @@ export const GlobalContextProvider = ({ children }) => {
 
   //* Set the wallet address to the state
   const updateCurrentWalletAddress = async () => {
-    const accounts = await window?.ethereum?.request({ method: 'eth_requestAccounts' });
+    const accounts = await window?.ethereum?.request({ method: 'eth_accounts' });
 
     if (accounts) setWalletAddress(accounts[0]);
   };

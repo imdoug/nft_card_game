@@ -51,4 +51,4 @@ const Battleground = () => {
   );
 };
 
-export default Battleground
+export default Battleground;
