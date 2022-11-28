@@ -18,6 +18,6 @@ export {
       PlayerInfo,
       GameInfo,
       Card,
-      ActionButton
+      ActionButton,
 
 }
